@@ -1,0 +1,19 @@
+A mérések során 10000, 20000 és 30000 elemszámú tömb töltőtödd fel
+0-tól a hosszáig random generált különböző számokkal.
+
+Átlagos idő:
+10000: 1,1 mp
+20000: 5,5 mp
+30000: 11 mp
+
+Mivel a feltöltés során a randomitásra hagyatkozunk, így a mérések szórása elég magas.
+
+Csökkentve a randomitást úgy, hogy 0-elemszám^2-ig generálunk számokat:
+
+Átlagos idő:
+10000: 0,21 mp
+20000: 0,95 mp
+30000: 2,97 mp
+
+A mérések szórása ez esetben jóval kisebb.
+A futási idő bonyolultsága a feltöltés és a különbözőség vizsgálat miatt O(n^2).
