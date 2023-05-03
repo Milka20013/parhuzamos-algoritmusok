@@ -15,7 +15,7 @@ A szavakat íly módon a pozitív egész számok halmazára képezhetjük le, ab
 Az egésznek az lenne a lényege, hogy meghatározzuk ezen szabályokkal, hogy mely szavak milyen művelettel eredményeznek értelmes szavakat. pl. ha minden értelmes szót páronként összeadunk/összeszorzunk, akkor lesz-e értelmes szó eredményként. Ennek keresését párhuzamosítanám egy C#-ban megírt programban.
 Matematikai leírás:
 - Legyen adott egy A abc (halmaz), mely csak 1 hosszú betűket tartalmaz, a betűk sorrendje adott, a halmaz hossza pedig n. Az abc mindig tartalmazza a '@' speciális karaktert.
-- Vegyük az n alapú számrendszert, illetve egy f : A->Z/Z- (pozitív egész számok)ba képző függvény, melyre f(x) = i, ahol i a betű A-ban elfoglalt helyének sorszáma.
+- Vegyük az n alapú számrendszert, illetve egy f : A->Z/Z- (pozitív egész számok)ba képző függvényt, melyre f(x) = i, ahol i a betű A-ban elfoglalt helyének sorszáma.
 - Legyen W az összes A-beli betűből előállítható szavak halmaza (egy betűt többször is használhatunk). Legyen g : W->Z/Z- függvény, melyre g(w) = (f(w(j)))*n^k +
 (f(w(j + 1)))*n^(k-1) + ... + (f(w(k)))*n^0, ahol k a szó hossza, j fut 1-től k-ig.
 - A műveleteket ilyen formán egész számokkal végezhetjük.
