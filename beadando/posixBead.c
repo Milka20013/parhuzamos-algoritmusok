@@ -5,28 +5,29 @@
 #include <time.h>
 #include <unistd.h>
 
-int GenerateRandomBetween(int a, int b);
-double GenerateRandomDBetween(double a, double b);
+void init_array(int *array, int length);
+void print_array(int *array, int length);
 
 typedef struct
 {
-    char* content;
+    char *content;
     int length;
-}String;
+} String;
 
-void SearchString(String text, String str, int *indices);
+void build_string(String *str, char *array);
+void build_empty_string(String *str, int length);
+void search_string(String *text, String *str, int *indices);
 
 int main()
 {
     srand(time(NULL));
 
     int numberOfLetters = 50000;
-    String* textPtr = malloc(sizeof(String));
-    textPtr->content = malloc(sizeof(char)*numberOfLetters);
-    textPtr->length = numberOfLetters;
+    String *textPtr = malloc(sizeof(String));
+    build_empty_string(textPtr, numberOfLetters);
 
-    FILE *fp = fopen("lorem.txt","r");
-    if(fp == 0)
+    FILE *fp = fopen("lorem.txt", "r");
+    if (fp == 0)
     {
         printf("Couldn't open the file");
         return 0;
@@ -36,44 +37,84 @@ int main()
     {
         tmp = fgetc(fp);
         textPtr->content[i] = tmp;
-        printf("%c",textPtr->content[i]);
-        
     }
-    fclose(fp);
-    free(textPtr);
-    char strToFind[] = "Lorem";
-    
-    
-    
 
+    fclose(fp);
+    char strToFind[] = "Lorem";
+    String *str = malloc(sizeof(String));
+    build_string(str, strToFind);
+    int length = 200;
+    int indices[length];
+    init_array(indices, length);
+    search_string(textPtr, str, indices);
+    print_array(indices, length);
 
     return 0;
 }
 
-void SearchString(String text, String str, int *indices)
+void init_array(int *array, int length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        array[i] = -1;
+    }
+}
+
+void print_array(int *array, int length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        if (array[i] != -1)
+        {
+            printf(" %d ", array[i]);
+        }
+    }
+}
+
+void search_string(String *text, String *str, int *indices)
 {
     int tester = 0;
     int indexOfIndex = 0;
-    for (int i = 0; i < text.length - str.length; i++)
+    for (int i = 0; i < text->length - str->length; i++)
     {
-        for (int j = 0; j < str.length; j++)
+        for (int j = 0; j < str->length; j++)
         {
-            if (str.content[j] != text.content[i + j])
+            if (str->content[j] != text->content[i + j])
             {
                 break;
             }
             else
             {
-                tester ++;
+                tester++;
             }
-            
         }
-        if (tester == str.length)
+        if (tester == str->length)
         {
             indices[indexOfIndex] = i;
-            indexOfIndex ++;
+            indexOfIndex++;
         }
+        tester = 0;
     }
-    
+}
 
+void build_empty_string(String *str, int length)
+{
+    str->content = malloc(sizeof(char) * length);
+    str->length = length;
+}
+
+void build_string(String *str, char *array)
+{
+    int length = 0;
+    while (array[length] != '\0')
+    {
+        length++;
+    }
+
+    build_empty_string(str, length);
+
+    for (int i = 0; i < length; i++)
+    {
+        str->content[i] = array[i];
+    }
 }
