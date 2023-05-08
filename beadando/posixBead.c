@@ -5,6 +5,9 @@
 #include <time.h>
 #include <unistd.h>
 
+
+const int MULTIPLIER = 500;
+
 void init_array(int *array, int length);
 void print_array(int *array, int length);
 
@@ -22,11 +25,11 @@ int main()
 {
     srand(time(NULL));
 
-    int numberOfLetters = 50000;
+    int numberOfLetters = 500000;
     String *textPtr = malloc(sizeof(String));
     build_empty_string(textPtr, numberOfLetters);
 
-    FILE *fp = fopen("lorem.txt", "r");
+    FILE *fp = fopen("lorem1.txt", "r");
     if (fp == 0)
     {
         printf("Couldn't open the file");
@@ -46,8 +49,15 @@ int main()
     int length = 200;
     int indices[length];
     init_array(indices, length);
-    search_string(textPtr, str, indices);
+    clock_t start = clock();
+    for (int i = 0; i < MULTIPLIER; i++)
+    {
+        search_string(textPtr, str, indices);
+    }
+    
+    clock_t end = clock();
     print_array(indices, length);
+    printf("\n Elapsed time: %lf s",(double)(end-start)/CLOCKS_PER_SEC);
 
     return 0;
 }
