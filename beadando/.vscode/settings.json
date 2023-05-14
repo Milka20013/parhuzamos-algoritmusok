@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "pthread.h": "c",
+    "string_utils.h": "c",
+    "string.h": "c",
+    "anagramma.h": "c",
+    "file_utils.h": "c",
+    "int_utils.h": "c"
+  }
+}
