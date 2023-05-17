@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     if (argc < 4)
     {
         printf("WARNING : {The intended use is:\n");
-        printf("anagramma [num_threads] [chars_to_analyze] [multiplier] [write*]\n");
-        printf("anagramma [number of threads] [chars to build anagramma from (like AMLA) [how many times should the algorithm run] [write output or not]\n");
+        printf("[name] [num_threads] [chars_to_analyze] [multiplier] [write*]\n");
+        printf("[name] [number of threads] [chars to build anagramma from (like AMLA) [how many times should the algorithm run] [write output or not]\n");
         printf("* the last parameter is optional. If it has any value, then the result is omitted.}\n\n");
     }
 

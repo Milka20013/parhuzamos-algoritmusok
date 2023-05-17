@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
     if (argc < 4)
     {
         printf("WARNING : {The intended use is:\n");
-        printf("anagramma [num_threads] [chars_to_analyze] [multiplier] \n");
-        printf("anagramma [number of threads] [chars to build search for (like lorem) [how many times should the algorithm run]\n\n");
+        printf("[name] [num_threads] [chars_to_analyze] [multiplier] \n");
+        printf("[name] [number of threads] [chars to build search for (like lorem) [how many times should the algorithm run]\n\n");
     }
 
     if (argc >= 2)
