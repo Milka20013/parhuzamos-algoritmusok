@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace StringOperations
 {
@@ -11,29 +12,29 @@ namespace StringOperations
             DictionaryManager dictionary = new DictionaryManager("Dictionary.txt");
             dictionary.CleanDictionary("AÁBCDEÉFGHIJKLMNOÓÖŐPRSTYUÚÜŰVWXZ");
             ABC abc = new ABC(dictionary.GetABC());
-            Calculator calculator = new Calculator(abc,5000);
+            Calculator calculator = new Calculator(abc, 5000);
             StringN.calculator = calculator;
             StringN str1 = null;
             StringN str2 = null;
             char mode = '+';
-            bool doParallel = false;
             int maxNumberOfWords = 30;
+            int numberOfThreads = 1;
             if (args.Length >= 1)
             {
-                doParallel = args[0] == "parallel";
                 if (args[0] == "h" || args[0] == "help")
                 {
                     Console.WriteLine("Intended use is:");
-                    Console.WriteLine("[name] [parallel] [number of words]");
-                    Console.WriteLine("[name of the program] [if parallel, then program runs in parallel] [number of words to find in Dictionary.txt]");
+                    Console.WriteLine("[name] [number of words] [number of threads]");
+                    Console.WriteLine("[name of the program] [number of words to find in Dictionary.txt] [number of threads]");
                     Console.WriteLine("[name] [str1] [operator] [str2] [abc]");
-                    Console.WriteLine("[name of the program] [left string] [what to do with strings] [right string]");
+                    Console.WriteLine("[name of the program] [left string] [what to do with strings] [right string] [abc which we generate the word in]");
                     return;
                 }
             }
             if (args.Length == 2)
             {
-                maxNumberOfWords = int.Parse(args[1]);
+                maxNumberOfWords = int.Parse(args[0]);
+                numberOfThreads = int.Parse(args[1]);
             }
             if (args.Length == 4)
             {
@@ -48,81 +49,51 @@ namespace StringOperations
             }
             Stopwatch stp = new Stopwatch();
             stp.Start();
-            if (doParallel)
+            if (str1 == null)
             {
-                Console.WriteLine("Parallel Mode");
-                AddWordsInDictParallel(dictionary, maxNumberOfWords);
+                Console.WriteLine("Word adding in dict with {0} threads", numberOfThreads);
+                AddWordsInDictParallel(dictionary, maxNumberOfWords, numberOfThreads);
             }
             else
             {
-                if (str1 == null)
+                StringN result = null;
+                switch (mode)
                 {
-                    Console.WriteLine("Sequential Mode");
-                    AddWordsInDictSec(dictionary, maxNumberOfWords);
+                    case '+':
+                        result = str1 + str2;
+                        break;
+                    case '-':
+                        result = str1 - str2;
+                        break;
+                    case '*':
+                        result = str1 * str2;
+                        break;
+                    case '/':
+                        result = str1 / str2;
+                        break;
+                    case '%':
+                        result = str1 % str2;
+                        break;
+                    default:
+                        break;
                 }
-                else
+                if (result != null)
                 {
-                    StringN result = null;
-                    switch (mode)
-                    {
-                        case '+':
-                            result = str1 + str2;
-                            break;
-                        case '-':
-                            result = str1 - str2;
-                            break;
-                        case '*':
-                            result = str1 * str2;
-                            break;
-                        case '/':
-                            result = str1 / str2;
-                            break;
-                        case '%':
-                            result = str1 % str2;
-                            break;
-                        default:
-                            break;
-                    }
-                    if (result != null)
-                    {
-                        Console.WriteLine(result.str);
-                    }
+                    Console.WriteLine(result.str);
                 }
             }
             stp.Stop();
-            Console.WriteLine("Elapsed time: {0} s",(double)stp.ElapsedMilliseconds / 1000.0);
+            Console.WriteLine("Elapsed time: {0} s", (double)stp.ElapsedMilliseconds / 1000.0);
         }
 
-        static void AddWordsInDictParallel(DictionaryManager dictionary, int maxNumberOfWords)
+        static void AddWordsInDictParallel(DictionaryManager dictionary, int maxNumberOfWords, int numberOfThreads)
         {
             int numberOfWords = 0;
-            Parallel.For(0, dictionary.Dict.Length,
-            (index, state) => {
-                   StringN text1 = dictionary.Dict[index];
-                   for (int j = index; j < dictionary.Dict.Length; j++)
-                {
-                       StringN text2 = dictionary.Dict[j];
-                       StringN result = text1 + text2;
-                       if (dictionary.WordIsInDictionary(result.str))
-                       {
-                           Console.WriteLine("{0} + {1} = {2}", text1, text2, result.str);
-                           numberOfWords++;
-                           if (numberOfWords == maxNumberOfWords)
-                           {
-                               state.Stop();
-                           }
-                       }
-                   }
-               });
-        }
-
-        static void AddWordsInDictSec(DictionaryManager dictionary, int maxNumberOfWords)
-        {
-            int numberOfWords = 0;
-            for (int i = 0; i < dictionary.Dict.Length; i++)
+            Parallel.For(0, dictionary.Dict.Length, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads },
+            (index, state) =>
             {
-                StringN text1 = dictionary.Dict[i];
-                for (int j = i; j < dictionary.Dict.Length; j++)
+                StringN text1 = dictionary.Dict[index];
+                for (int j = index; j < dictionary.Dict.Length; j++)
                 {
                     StringN text2 = dictionary.Dict[j];
                     StringN result = text1 + text2;
@@ -132,12 +103,11 @@ namespace StringOperations
                         numberOfWords++;
                         if (numberOfWords == maxNumberOfWords)
                         {
-                            return;
+                            state.Stop();
                         }
                     }
                 }
-            }
-       
+            });
         }
     }
 }
