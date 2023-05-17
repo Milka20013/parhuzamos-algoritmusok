@@ -1,0 +1,16 @@
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\StringOperations.csproj.AssemblyReference.cache
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\StringOperations.csproj.SuggestedBindingRedirects.cache
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\StringOperations.csproj.CoreCompileInputs.cache
+F:\Egyetem\ParhuzamosBeadando\bin\Debug\StringOperations.exe.config
+F:\Egyetem\ParhuzamosBeadando\bin\Debug\StringOperations.exe
+F:\Egyetem\ParhuzamosBeadando\bin\Debug\StringOperations.pdb
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\StringOperations.exe
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\StringOperations.pdb
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\bin\Debug\StringOperations.exe.config
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\bin\Debug\StringOperations.exe
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\bin\Debug\StringOperations.pdb
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\obj\Debug\StringOperations.csproj.AssemblyReference.cache
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\obj\Debug\StringOperations.csproj.SuggestedBindingRedirects.cache
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\obj\Debug\StringOperations.csproj.CoreCompileInputs.cache
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\obj\Debug\StringOperations.exe
+F:\Egyetem\c_sdk_220203\parhuzamos-algoritmusok\beadando\C#_Parallel\StringOperations\obj\Debug\StringOperations.pdb

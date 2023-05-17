@@ -1,0 +1,8 @@
+F:\Egyetem\ParhuzamosBeadando\bin\Debug\ParhuzamosBeadando.exe.config
+F:\Egyetem\ParhuzamosBeadando\bin\Debug\ParhuzamosBeadando.exe
+F:\Egyetem\ParhuzamosBeadando\bin\Debug\ParhuzamosBeadando.pdb
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\ParhuzamosBeadando.csproj.AssemblyReference.cache
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\ParhuzamosBeadando.csproj.SuggestedBindingRedirects.cache
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\ParhuzamosBeadando.csproj.CoreCompileInputs.cache
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\ParhuzamosBeadando.exe
+F:\Egyetem\ParhuzamosBeadando\obj\Debug\ParhuzamosBeadando.pdb
