@@ -36,7 +36,7 @@ void anagramma_algorithm_contains(String *words, char *chars_to_analyze, int lin
                         tester++;
                     }
                 }
-                if (tester == words[i].length && write)
+                if (tester == words[i].length && write && j == multiplier - 1)
                 {
                     printf("word: %s can be constructed from %s\n", words[i].content, letters->content);
                 }
@@ -60,7 +60,7 @@ void anagramma_algorithm_int(String *words, char *chars_to_analyze, int lines, i
         }
     }
     constrain_string(distinct_chars);
-#pragma omp parallel
+#pragma omp parallel num_threads(num_threads)
     {
         String *letters = malloc(sizeof(String));
         build_string(letters, chars_to_analyze);
@@ -101,7 +101,7 @@ void anagramma_algorithm_int(String *words, char *chars_to_analyze, int lines, i
                         tester = 0;
                     }
                 }
-                if (tester == 1 && write)
+                if (tester == 1 && write && j == multiplier - 1)
                 {
                     printf("word: %s can be constructed from %s\n", words[i].content, letters->content);
                 }
