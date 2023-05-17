@@ -9,7 +9,6 @@ void build_empty_string(String *str, int length)
     {
         str->content[i] = '@';
     }
-
     str->length = length;
 }
 
@@ -46,6 +45,30 @@ void copy_string(String *source, String *destination)
     for (int i = 0; i < source->length; i++)
     {
         destination->content[i] = source->content[i];
+    }
+}
+
+String *substring(String *str, int length)
+{
+    String *substr = malloc(sizeof(String));
+    build_empty_string(substr, length);
+    for (int i = 0; i < length; i++)
+    {
+        substr->content[i] = str->content[i];
+    }
+    return substr;
+}
+
+void reverse_string(String *str)
+{
+    char temp;
+    int length = str->length;
+
+    for (int i = 0; i < length / 2; i++)
+    {
+        temp = str->content[i];
+        str->content[i] = str->content[length - i - 1];
+        str->content[length - i - 1] = temp;
     }
 }
 

@@ -14,11 +14,10 @@ int main(int argc, char *argv[])
     int max_word_length;
     int lines;
     int error = count_lengths_in_file("dict.txt", &lines, &max_word_length);
-    if (error)
+    if (error == 0)
     {
         return 0;
     }
-
     // build Strings according to the lines and word lengths
     String words[lines];
     for (int i = 0; i < lines; i++)
@@ -27,7 +26,7 @@ int main(int argc, char *argv[])
     }
 
     error = store_file_in_string_array(words, "dict.txt");
-    if (error)
+    if (error == 0)
     {
         return 0;
     }
@@ -37,6 +36,14 @@ int main(int argc, char *argv[])
     int num_threads = 1;
     int multiplier = 1;
     int write = 0;
+    if (argc < 4)
+    {
+        printf("WARNING : {The intended use is:\n");
+        printf("anagramma [num_threads] [chars_to_analyze] [multiplier] [write*]\n");
+        printf("anagramma [number of threads] [chars to build anagramma from (like AMLA) [how many times should the algorithm run] [write output or not]\n");
+        printf("* the last parameter is optional. If it has any value, then the result is omitted.}\n\n");
+    }
+
     if (argc >= 2)
     {
         num_threads = atoi(argv[1]);

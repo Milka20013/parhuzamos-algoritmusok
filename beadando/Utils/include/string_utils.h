@@ -31,4 +31,14 @@ void copy_string(String *source, String *destination);
     Check if the char is in the string, returns the index of the char or -1 if it wasn't found
 */
 int contains(String *str, char c);
+
+/*
+    Reverses a string
+*/
+void reverse_string(String *str);
+
+/*
+    Makes a length size substring of the strs starting from index 0
+*/
+String *substring(String *str, int length);
 #endif
